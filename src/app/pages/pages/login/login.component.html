@@ -2,11 +2,10 @@
   <div class="mdl-card__supporting-text color--dark-gray">
     <div class="mdl-grid">
       <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone">
-        <span class="mdl-card__title-text text-color--smooth-gray">DARKBOARD</span>
+        <span class="mdl-card__title-text text-color--smooth-gray">INFOVID</span>
       </div>
       <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone">
-        <span class="blank-layout-card-name text-color--white">Sign in</span>
-        <span class="blank-layout-card-secondary-text text-color--smoke">Enter fields to sign in to DARKBOARD</span>
+        <span class="blank-layout-card-name text-color--white">Iniciar sesión</span>
       </div>
       <form class="login-form" [formGroup]="loginForm" (submit)="login()" autocomplete="off" novalidate>
         <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone">
@@ -21,10 +20,10 @@
 
             <div *ngIf="email.invalid && (email.dirty || email.touched)">
               <span *ngIf="email.errors.required" class="mdl-textfield__error">
-                Email is required. <span class="color-text--orange"> Please, write any valid email.</span>
+                Correo es requerido. <span class="color-text--orange"> Porfavor ingrese un correo electrónico válido</span>
               </span>
               <span *ngIf="email.errors.pattern" class="mdl-textfield__error">
-                Email is invalid.
+                Correo electrónico inválido.
               </span>
             </div>
           </div>
@@ -36,24 +35,24 @@
             <input formControlName="password"
                    (change)="onInputChange($event)"
                    class="mdl-textfield__input" type="password" id="password">
-            <label class="mdl-textfield__label" for="password">Password</label>
+            <label class="mdl-textfield__label" for="password">Contraseña</label>
             <div *ngIf="password.invalid && (password.dirty || password.touched)">
               <span *ngIf="password.errors.required" class="mdl-textfield__error">
-                Password is required. <span class="color-text--orange"> Please, write any password.</span>
+                Contraseña es requerida. <span class="color-text--orange"> Por favor ingrese su contraseña.</span>
               </span>
             </div>
           </div>
 
           <div class="full-size color-text--red" *ngIf="error"> {{ error }}</div>
 
-          <a routerLink="/pages/forgot-password" class="blank-layout-card-link">Forgot password?</a>
+          <a routerLink="/pages/forgot-password" class="blank-layout-card-link">Olvidé mi contraseña</a>
         </div>
         <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone submit-cell">
-          <a routerLink="/pages/sign-up" class="blank-layout-card-link">Don't have account?</a>
+          <a routerLink="/pages/sign-up" class="blank-layout-card-link">No tienes cuenta?</a>
           <div class="mdl-layout-spacer"></div>
           <button class="mdl-button mdl-js-button mdl-button--raised color--light-blue"
                   type="submit" [disabled]="loginForm.invalid">
-            SIGN IN
+            Iniciar sesión
           </button>
         </div>
       </form>
