@@ -1,20 +1,25 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable, of} from 'rxjs';
+import {map} from 'rxjs/operators';
 
-import { environment } from '../../../environments/environment';
+import {environment} from '../../../environments/environment';
+import {User} from './user';
 
 const tokenName = 'token';
+const urlBase = environment.apiBaseUrl + 'usuarios';
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
 
 @Injectable({
-  providedIn: 'root',
-})
+              providedIn: 'root',
+            })
 export class AuthService {
 
   private isLogged$ = new BehaviorSubject(false);
   private url = `${environment.apiBaseUrl}/api/auth`;
-  private user = { username: 'Luke', email: 'Luke@skywalker.com' }; // some data about user
+  private user = {username: 'Luke', email: 'Luke@skywalker.com'}; // some data about user
 
   constructor(private http: HttpClient) {
 
@@ -24,17 +29,22 @@ export class AuthService {
     return this.isLogged$.value;
   }
 
-  public login(data): Observable<any> {
-    return this.http.post(`${this.url}/login`, data)
+  public login(user, password): Observable<any> {
+    return this.http.get(`${urlBase}/iniciar-sesion/${user}/${password}`, httpOptions)
       .pipe(
-        map((res: { user: any, token: string }) => {
-          this.user = res.user;
-          localStorage.setItem(tokenName, res.token);
-          // only for example
-          localStorage.setItem('username', res.user.username);
-          localStorage.setItem('email', res.user.email);
-          this.isLogged$.next(true);
-          return this.user;
+        map((res: any) => {
+          if (res && res.body) {
+            let usuarioConsultado = new User();
+            usuarioConsultado.username = 'user.userName';
+            usuarioConsultado.email = 'user.correo';
+            this.user = usuarioConsultado;
+            localStorage.setItem(tokenName, 'res.token');
+            // only for example
+            localStorage.setItem('username', res.body.userName);
+            localStorage.setItem('email', res.body.correo);
+            this.isLogged$.next(true);
+            return this.user;
+          }
         }));
   }
 
@@ -46,20 +56,6 @@ export class AuthService {
         this.isLogged$.next(false);
         return of(false);
       }));
-  }
-
-  public signup(data) {
-    return this.http.post(`${this.url}/signup`, data)
-      .pipe(
-        map((res: { user: any, token: string }) => {
-          this.user = res.user;
-          localStorage.setItem(tokenName, res.token);
-          // only for example
-          localStorage.setItem('username', res.user.username);
-          localStorage.setItem('email', res.user.email);
-          this.isLogged$.next(true);
-          return this.user;
-        }));
   }
 
   public get authToken(): string {

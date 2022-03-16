@@ -16,7 +16,7 @@ import { FormsComponent } from './pages/forms';
   imports: [
     RouterModule.forRoot(
       [
-        { path: '', redirectTo: 'app/dashboard', pathMatch: 'full' },
+        { path: '', redirectTo: 'pages/login', pathMatch: 'full' },
         { path: 'app', component: CommonLayoutComponent, children: [
           { path: 'dashboard', component: DashboardComponent, pathMatch: 'full' },
           { path: 'dashboard-custom', component: Dashboard2Component, pathMatch: 'full' },
