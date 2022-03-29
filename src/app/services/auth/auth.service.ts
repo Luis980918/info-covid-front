@@ -97,7 +97,7 @@ export class AuthService {
   }
 
   private asignUserInformation() {
-    const user = new CompleteUser();
+    let user = new CompleteUser();
     user.celular = localStorage.getItem('celular');
     user.ciudadCliente = localStorage.getItem('ciudadCliente');
     user.contrasena = localStorage.getItem('contrasena');
@@ -107,7 +107,19 @@ export class AuthService {
     user.id = localStorage.getItem('id');
     user.idSubscripcion = localStorage.getItem('idSubscripcion');
     user.nombreCompleto = localStorage.getItem('nombreCompleto');
-    user.username = localStorage.getItem('username');
+    user.userName = localStorage.getItem('username');
     return user;
   }
+
+  public getUser(): Observable<any> {
+    const id = localStorage.getItem('id');
+    return this.http.get(`${urlBase}/buscar-usuario/${id}`, httpOptions)
+      .pipe(
+        map((res: any) => {
+          if (res && res.body) {
+            return res.body;
+          }
+        }));
+  }
 }
+
