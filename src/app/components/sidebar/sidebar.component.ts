@@ -10,8 +10,7 @@ import { SidebarComponent as BaseSidebarComponent } from 'theme/components/sideb
 export class SidebarComponent extends BaseSidebarComponent {
   public title = 'infovid';
   public menu = [
-    { name: 'Classic Dashboard', link: '/app/dashboard', icon: 'dashboard' },
-    { name: 'Custom Dashboard', link: '/app/dashboard-custom', icon: 'view_quilt' },
+    { name: 'Gráficos e información', link: '/app/dashboard', icon: 'dashboard' },
     {
       name: 'UI',
       children: [
@@ -34,23 +33,7 @@ export class SidebarComponent extends BaseSidebarComponent {
       ],
       icon: 'view_comfy',
     },
-    { name: 'Components', link: '/app/components', icon: 'developer_board' },
-    { name: 'Account', link: '/app/forms', icon: 'person' },
-    {
-      name: 'Maps', icon: 'map', children: [
-      { name: 'Simple map', link: '/maps/simple' },
-      { name: 'Advanced map', link: '/maps/advanced' },
-      ],
-    },
-    { name: 'Charts', link: '/app/charts', icon: 'multiline_chart' },
-    {
-      name: 'Pages', children: [
-      { name: 'Sign in', link: '/pages/login' },
-      { name: 'Sign up', link: '/pages/sign-up' },
-      { name: 'Forgot password', link: '/pages/forgot-password' },
-      { name: '404', link: '/pages/error' },
-      ],
-      icon: 'pages',
-    },
+    { name: 'Consultas', link: '/app/components', icon: 'developer_board' },
+    { name: 'Ver tu perfil', link: '/app/forms', icon: 'person' },
   ];
 }

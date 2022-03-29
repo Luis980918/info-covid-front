@@ -14,7 +14,7 @@ export class LoginComponent extends BlankLayoutCardComponent implements OnInit {
   public loginForm: FormGroup;
   public email;
   public password;
-  public emailPattern = '^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$';
+  public emailPattern = '\\S+@\\S+\\.\\S+';
   public error: string;
 
   constructor(public authService: AuthService,
@@ -27,7 +27,7 @@ export class LoginComponent extends BlankLayoutCardComponent implements OnInit {
       email: new FormControl('', [
         Validators.required,
         Validators.pattern(this.emailPattern),
-        Validators.maxLength(20),
+        Validators.maxLength(50),
       ]),
     });
     this.email = this.loginForm.get('email');
@@ -46,7 +46,9 @@ export class LoginComponent extends BlankLayoutCardComponent implements OnInit {
     if (this.loginForm.valid) {
       this.authService.login(this.email.value, this.password.value)
         .subscribe(res => this.router.navigate(['/app/dashboard']),
-                   error => this.error = error.message);
+                   error => {
+                     this.error = error.error.message;
+                   });
     }
   }
 
