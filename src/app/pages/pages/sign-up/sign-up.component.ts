@@ -20,7 +20,7 @@ export class SignUpComponent extends BlankLayoutCardComponent implements OnInit 
   public password;
   public username;
   public nombres;
-  public emailPattern = '^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$';
+  public emailPattern = '\\S+@\\S+\\.\\S+';
   public error: string;
 
   constructor(public authService: AuthService,
