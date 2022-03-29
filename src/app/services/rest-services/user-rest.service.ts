@@ -15,4 +15,16 @@ export class UserRestService {
       filter(data => data && data.body),
       map(data => data.body));
   }
+
+  actualizarUsuario(usuario: any): Observable<any> {
+    return this.userService.actualizarUsuario(usuario).pipe(
+      filter(data => data && data.body),
+      map(data => data.body));
+  }
+
+  recuperarClave(email: any): Observable<any> {
+    return this.userService.recuperarClave(email).pipe(
+      filter(data => data && data.body),
+      map(data => data.body));
+  }
 }
