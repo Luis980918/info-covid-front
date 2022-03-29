@@ -8,5 +8,5 @@ export class CompleteUser {
   id: any;
   idSubscripcion: any;
   nombreCompleto: any;
-  username: any;
+  userName: any;
 }

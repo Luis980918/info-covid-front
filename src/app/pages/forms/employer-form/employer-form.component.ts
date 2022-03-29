@@ -1,4 +1,5 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 import { AuthService } from '@services/*';
 import { CompleteUser } from '../../../services/auth/complete-user';
 import { UserRestService } from '../../../services/rest-services/user-rest.service';
@@ -24,16 +25,21 @@ export class EmployerFormComponent implements  OnInit {
   deshabilitarActualizar = false;
 
   constructor(private authService: AuthService,
-              private userService: UserRestService) {}
+              private userService: UserRestService,
+              public router: Router) {}
 
   ngOnInit(): void {
     this.authService.userData.subscribe(user => this.user = user ? user : {
-      username: 'User',
+      userName: 'User',
       email: 'User@User.com',
     });
 
-    this.user = this.authService.loadCompleteUser;
-    this.asignarInformacionDeUsuario();
+    this.authService.getUser().subscribe(data => {
+      if (data) {
+        this.user = data;
+        this.asignarInformacionDeUsuario();
+      }
+    });
   }
 
   cambiarClave() {
@@ -44,20 +50,24 @@ export class EmployerFormComponent implements  OnInit {
     if (this.user) {
       this.correo = this.user.correo;
       this.nombres = this.user.nombreCompleto;
-      this.username = this.user.username;
+      this.username = this.user.userName;
       this.celular = this.user.celular ? this.user.celular : '';
     }
   }
 
   actualizar() {
     this.user.nombreCompleto = this.nombres;
-    this.user.username = this.username;
+    this.user.userName = this.username;
     this.user.celular = this.celular;
     this.user.ciudadCliente = null;
     if ((this.claveActual === this.user.contrasena) && (this.nuevaClave === this.confirmarClave)) {
       this.user.contrasena = this.nuevaClave;
     }
-    this.userService.actualizarUsuario(this.user).subscribe();
+    this.userService.actualizarUsuario(this.user).subscribe(data => {
+      if (data) {
+        this.router.navigate(['/app/dashboard']);
+      }
+    });
   }
 
   verificarCampos() {
