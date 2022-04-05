@@ -7,7 +7,7 @@ app.use(express.static(__dirname + '/dist/info-covid-front'));
 
 // Send all requests to index.html
 app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname + '/dist/info-covid-front/index.html'));
+  res.sendFile(path.join(__dirname + '/dist/info-covid-front/src/index.html'));
 });
 
 // default Heroku port
