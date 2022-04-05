@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:8080/info-covid-api/',
+  apiBaseUrl: 'http://localhost:4200/',
 };
