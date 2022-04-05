@@ -4,6 +4,6 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false,
-  apiBaseUrl: 'http://localhost:4200/',
+  production: true,
+  apiBaseUrl: 'https://spring-admins-manager-infovid.herokuapp.com/',
 };
