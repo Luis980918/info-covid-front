@@ -9,7 +9,7 @@
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size"
                [class.is-invalid]="username.invalid && (username.dirty || username.touched)"
                [class.is-valid]="username.valid && (username.dirty || username.touched)">
-            <input formControlName="userName"
+            <input formControlName="username"
                    (change)="onInputChange($event)"
                    class="mdl-textfield__input" type="text" id="username">
             <label class="mdl-textfield__label" for="username">Nombre de usuario</label>

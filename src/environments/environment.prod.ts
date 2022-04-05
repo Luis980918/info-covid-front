@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBaseUrl: '',
+  apiBaseUrl: 'https://spring-admins-manager-infovid.herokuapp.com/',
 };

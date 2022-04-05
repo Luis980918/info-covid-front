@@ -14,13 +14,18 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "tlint": "ng lint",
     "tlint:fix": "ng lint --fix",
     "slint": "stylelint --syntax scss ./**/*.scss",
     "slint:fix": "stylelint --syntax scss --fix ./**/*.scss",
-    "lint": "ng lint && stylelint --syntax scss ./**/*.scss"
+    "lint": "ng lint && stylelint --syntax scss ./**/*.scss",
+    "postinstall": "ng build --prod"
+  },
+  "engines": {
+    "node": "14.17.0",
+    "npm": "6.14.13"
   },
   "pre-commit": "lint",
   "private": true,
@@ -44,6 +49,7 @@
     "@angular/router": "10.0.8",
     "@types/googlemaps": "^3.30.18",
     "classlist.js": "1.1.20150312",
+    "express": "^4.17.1",
     "core-js": "2.5.6",
     "d3": "3.5.17",
     "material-angular-select": "1.0.0",
