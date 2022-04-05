@@ -15,13 +15,14 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
-    "build": "ng build --prod",
+    "build": "ng build",
     "tlint": "ng lint",
     "tlint:fix": "ng lint --fix",
     "slint": "stylelint --syntax scss ./**/*.scss",
     "slint:fix": "stylelint --syntax scss --fix ./**/*.scss",
     "lint": "ng lint && stylelint --syntax scss ./**/*.scss",
-    "postinstall": "ng build --prod"
+    "postinstall": "ng build --prod",
+    "heroku-postbuild": "ng build --prod"
   },
   "engines": {
     "node": "14.17.0",
