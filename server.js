@@ -1,15 +1,14 @@
-//Install express server
-const express = require('express');
 const path = require('path');
-
+const express = require('express');
 const app = express();
 
-// Serve only the static files form the dist directory
-app.use(express.static('./dist/info-covid-front'));
+// Serve static files
+app.use(express.static(path.join(__dirname, 'dist','info-covid-front')));
 
-app.get('/*', (req, res) =>
-  res.sendFile('index.html', {root: 'dist/info-covid-front/'}),
-);
+// Send all requests to index.html
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(path.join(__dirname,'dist','info-covid-front','index.html')));
+});
 
-// Start the app by listening on the default Heroku port
-app.listen(process.env.PORT || 8080);
+// default Heroku port
+app.listen(process.env.PORT || 5000);
